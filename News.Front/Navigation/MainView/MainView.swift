@@ -34,6 +34,31 @@ struct MainView: View {
                 }
             }
             .navigationTitle("News feed")
+            .toolbar {
+                Button {
+                    
+                } label: {
+                    Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                        .scaleEffect(1.2)
+                }
+                .overlay(
+                    VStack {
+                        if !viewModel.filters.isEmpty {
+                            Circle()
+                                .fill(Color.red)
+                                .frame(width: 15, height: 15)
+                                .offset(x: 10, y: -7)
+                                .overlay(
+                                    Text("\(viewModel.filters.count)")
+                                        .font(.system(size: 10))
+                                        .foregroundColor(.white)
+                                        .offset(x: 10, y: -7)
+                                )
+                        }
+                    }
+                )
+
+            }
             .refreshable {
                 Task {
                     await viewModel.fetchArticles()
@@ -55,6 +80,12 @@ struct MainView: View {
                     viewModel.removeFilter(at: index)
                 } label: {
                     HStack {
+                        if let icon = filter.icon {
+                            icon
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                        }
+                        
                         TextForFilter(filter)
                             .font(.system(.caption, design: .rounded, weight: .semibold))
                             .foregroundColor(.white)
@@ -75,11 +106,11 @@ struct MainView: View {
     private func TextForFilter(_ filter: Filter) -> Text {
         switch filter {
         case .user(_, let name):
-            return Text("author: \(name)")
+            return Text(name)
         case .tag(let tag):
-            return Text("tag: \(tag)")
+            return Text(tag)
         case .theme(let theme):
-            return Text("theme: \(theme)")
+            return Text(theme)
         case .fromDate(let date):
             return Text("from: \(date.formatted(.dateTime.day().month().year()))")
         case .toDate(let date):

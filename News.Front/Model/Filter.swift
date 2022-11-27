@@ -15,6 +15,19 @@ enum Filter {
     case fromDate(Date)
     case toDate(Date)
     
+    var icon: Image? {
+        switch self {
+        case .user(_, _):
+            return Image(systemName: "person.circle.fill")
+        case .tag(_):
+            return Image(systemName: "tag.fill")
+        case .theme(_):
+            return Image(systemName: "newspaper.fill")
+        default:
+            return nil
+        }
+    }
+    
     var color: Color {
         switch self {
         case .user(_, _):
