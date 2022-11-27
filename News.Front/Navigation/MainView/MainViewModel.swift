@@ -10,7 +10,9 @@ import Foundation
 final class MainViewModel: ObservableObject {
     
     @Published var articles: [Article] = []
+    @Published var filters: [Filter] = []
     
+    @MainActor
     func fetchArticles() async {
         articles = [
             Article(id: 0,
@@ -42,6 +44,20 @@ final class MainViewModel: ObservableObject {
                     user: User(id: 0, firstName: "Oleg", secondName: "Mongol", email: "kkssdwi@gmail.com"),
                     dateCreated: Date())
         ]
+        
+        filters = [
+            .tag("football"),
+            .theme("Sport"),
+            .tag("swimming"),
+            .user(10, "Oleg Mongol"),
+            .toDate(Date().addingTimeInterval(.dayDuration)),
+            .fromDate(Date().addingTimeInterval(-(.dayDuration))),
+        ]
+        filters.sort { $0.order < $1.order }
+    }
+    
+    func removeFilter(at index: Int) {
+        filters.remove(at: index)
     }
     
 }

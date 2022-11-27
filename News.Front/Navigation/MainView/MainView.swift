@@ -15,13 +15,22 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.articles, id:\.id) { article in
-                    NavigationLink {
-                        DetailedArtileView(article: article)
-                    } label: {
-                        ArticleView(article: article)
+                if !viewModel.filters.isEmpty {
+                    Section {
+                        SelectedFiltersView()
+                            .buttonStyle(PlainButtonStyle())
                     }
+                }
+                
+                Section {
+                    ForEach(viewModel.articles, id:\.id) { article in
+                        NavigationLink {
+                            DetailedArtileView(article: article)
+                        } label: {
+                            ArticleView(article: article)
+                        }
 
+                    }
                 }
             }
             .navigationTitle("News feed")
@@ -35,6 +44,46 @@ struct MainView: View {
             Task {
                 await viewModel.fetchArticles()
             }
+        }
+    }
+    
+    @ViewBuilder
+    private func SelectedFiltersView() -> some View {
+        VFlow(alignment: .leading) {
+            ForEach(Array(viewModel.filters.enumerated()), id:\.offset) { index, filter in
+                Button {
+                    viewModel.removeFilter(at: index)
+                } label: {
+                    HStack {
+                        TextForFilter(filter)
+                            .font(.system(.caption, design: .rounded, weight: .semibold))
+                            .foregroundColor(.white)
+
+                        Image(systemName: "xmark.circle.fill")
+                            .renderingMode(.template)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.vertical, 5)
+                    .padding(.horizontal, 10)
+                    .background(filter.color)
+                    .cornerRadius(15)
+                }
+            }
+        }
+    }
+    
+    private func TextForFilter(_ filter: Filter) -> Text {
+        switch filter {
+        case .user(_, let name):
+            return Text("author: \(name)")
+        case .tag(let tag):
+            return Text("tag: \(tag)")
+        case .theme(let theme):
+            return Text("theme: \(theme)")
+        case .fromDate(let date):
+            return Text("from: \(date.formatted(.dateTime.day().month().year()))")
+        case .toDate(let date):
+            return Text("to: \(date.formatted(.dateTime.day().month().year()))")
         }
     }
     
