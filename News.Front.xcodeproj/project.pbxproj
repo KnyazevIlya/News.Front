@@ -8,17 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		21123B9E2932D3AE00858119 /* News_FrontApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123B9D2932D3AE00858119 /* News_FrontApp.swift */; };
-		21123BA02932D3AE00858119 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123B9F2932D3AE00858119 /* ContentView.swift */; };
+		21123BA02932D3AE00858119 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123B9F2932D3AE00858119 /* MainView.swift */; };
 		21123BA22932D3B000858119 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21123BA12932D3B000858119 /* Assets.xcassets */; };
 		21123BA52932D3B000858119 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21123BA42932D3B000858119 /* Preview Assets.xcassets */; };
+		21123BAD2932D40E00858119 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BAC2932D40E00858119 /* MainViewModel.swift */; };
+		21123BB02932D46800858119 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BAF2932D46800858119 /* Article.swift */; };
+		21123BB22932D49F00858119 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BB12932D49F00858119 /* User.swift */; };
+		21123BB42932D58A00858119 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BB32932D58A00858119 /* Theme.swift */; };
+		21123BBA2932DF4000858119 /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = 21123BB92932DF4000858119 /* SwiftUIFlow */; };
+		21123BC02932E35E00858119 /* DetailedArtileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BBF2932E35E00858119 /* DetailedArtileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		21123B9A2932D3AE00858119 /* News.Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = News.Front.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		21123B9D2932D3AE00858119 /* News_FrontApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News_FrontApp.swift; sourceTree = "<group>"; };
-		21123B9F2932D3AE00858119 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		21123B9F2932D3AE00858119 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		21123BA12932D3B000858119 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		21123BA42932D3B000858119 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		21123BAC2932D40E00858119 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		21123BAF2932D46800858119 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		21123BB12932D49F00858119 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		21123BB32932D58A00858119 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		21123BBF2932E35E00858119 /* DetailedArtileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedArtileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21123BBA2932DF4000858119 /* SwiftUIFlow in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +63,10 @@
 		21123B9C2932D3AE00858119 /* News.Front */ = {
 			isa = PBXGroup;
 			children = (
+				21123BBB2932E32A00858119 /* Navigation */,
+				21123BB52932DABF00858119 /* CustomViews */,
+				21123BAE2932D46000858119 /* Model */,
 				21123B9D2932D3AE00858119 /* News_FrontApp.swift */,
-				21123B9F2932D3AE00858119 /* ContentView.swift */,
 				21123BA12932D3B000858119 /* Assets.xcassets */,
 				21123BA32932D3B000858119 /* Preview Content */,
 			);
@@ -65,6 +79,49 @@
 				21123BA42932D3B000858119 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		21123BAB2932D3C500858119 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				21123B9F2932D3AE00858119 /* MainView.swift */,
+				21123BAC2932D40E00858119 /* MainViewModel.swift */,
+			);
+			path = MainView;
+			sourceTree = "<group>";
+		};
+		21123BAE2932D46000858119 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				21123BAF2932D46800858119 /* Article.swift */,
+				21123BB32932D58A00858119 /* Theme.swift */,
+				21123BB12932D49F00858119 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		21123BB52932DABF00858119 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		21123BBB2932E32A00858119 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				21123BBC2932E33400858119 /* DetailedArticleView */,
+				21123BAB2932D3C500858119 /* MainView */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		21123BBC2932E33400858119 /* DetailedArticleView */ = {
+			isa = PBXGroup;
+			children = (
+				21123BBF2932E35E00858119 /* DetailedArtileView.swift */,
+			);
+			path = DetailedArticleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +140,9 @@
 			dependencies = (
 			);
 			name = News.Front;
+			packageProductDependencies = (
+				21123BB92932DF4000858119 /* SwiftUIFlow */,
+			);
 			productName = News.Front;
 			productReference = 21123B9A2932D3AE00858119 /* News.Front.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +171,9 @@
 				Base,
 			);
 			mainGroup = 21123B912932D3AE00858119;
+			packageReferences = (
+				21123BB82932DF4000858119 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
+			);
 			productRefGroup = 21123B9B2932D3AE00858119 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -137,8 +200,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				21123BA02932D3AE00858119 /* ContentView.swift in Sources */,
+				21123BC02932E35E00858119 /* DetailedArtileView.swift in Sources */,
+				21123BB02932D46800858119 /* Article.swift in Sources */,
+				21123BA02932D3AE00858119 /* MainView.swift in Sources */,
 				21123B9E2932D3AE00858119 /* News_FrontApp.swift in Sources */,
+				21123BB42932D58A00858119 /* Theme.swift in Sources */,
+				21123BB22932D49F00858119 /* User.swift in Sources */,
+				21123BAD2932D40E00858119 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		21123BB82932DF4000858119 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		21123BB92932DF4000858119 /* SwiftUIFlow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 21123BB82932DF4000858119 /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
+			productName = SwiftUIFlow;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 21123B922932D3AE00858119 /* Project object */;
 }
