@@ -10,6 +10,14 @@ import Foundation
 final class MainViewModel: ObservableObject {
     
     @Published var articles: [Article] = []
+    @Published var users: [User] = []
+    @Published var themes: [Theme] = []
+    @Published var tags: [String] = []
+    // TODO: - subscribe on updates
+    // debounce
+    // await URLSession
+    // mapToLatest
+    // animate list change
     @Published var filters: [Filter] = []
     
     @MainActor
@@ -49,7 +57,7 @@ final class MainViewModel: ObservableObject {
             .tag("football"),
             .theme("Sport"),
             .tag("swimming"),
-            .user(10, "Oleg Mongol"),
+            .author(10, "Oleg Mongol"),
             .toDate(Date().addingTimeInterval(.dayDuration)),
             .fromDate(Date().addingTimeInterval(-(.dayDuration))),
         ]

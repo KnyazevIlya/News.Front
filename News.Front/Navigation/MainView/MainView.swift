@@ -10,7 +10,9 @@ import SwiftUIFlow
 
 struct MainView: View {
     
-    @StateObject var viewModel: MainViewModel
+    @EnvironmentObject private var viewModel: MainViewModel
+    @State private var isFilterPresented = false
+    @State private var isEditorPresented = false
     
     var body: some View {
         NavigationView {
@@ -36,7 +38,7 @@ struct MainView: View {
             .navigationTitle("News feed")
             .toolbar {
                 Button {
-                    
+                    isFilterPresented.toggle()
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .scaleEffect(1.2)
@@ -57,7 +59,19 @@ struct MainView: View {
                         }
                     }
                 )
+                .sheet(isPresented: $isFilterPresented) {
+                    FilterView()
+                }
 
+                Button {
+                    isEditorPresented.toggle()
+                } label: {
+                    Image(systemName: "square.and.pencil.circle.fill")
+                        .scaleEffect(1.2)
+                }
+                .sheet(isPresented: $isEditorPresented) {
+                    Text("Editor here")
+                }
             }
             .refreshable {
                 Task {
@@ -105,7 +119,7 @@ struct MainView: View {
     
     private func TextForFilter(_ filter: Filter) -> Text {
         switch filter {
-        case .user(_, let name):
+        case .author(_, let name):
             return Text(name)
         case .tag(let tag):
             return Text(tag)
@@ -159,6 +173,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+        MainView()
+            .environmentObject(MainViewModel())
     }
 }

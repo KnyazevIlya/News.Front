@@ -19,6 +19,12 @@
 		21123BC02932E35E00858119 /* DetailedArtileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BBF2932E35E00858119 /* DetailedArtileView.swift */; };
 		21123BC22932E88A00858119 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BC12932E88A00858119 /* Filter.swift */; };
 		21123BC52932E9D200858119 /* TimeInterval + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BC42932E9D200858119 /* TimeInterval + Extension.swift */; };
+		21123BCA2933EF0100858119 /* TagTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BC92933EF0100858119 /* TagTextField.swift */; };
+		21123BCF2933F02E00858119 /* TagFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BCE2933F02E00858119 /* TagFilterView.swift */; };
+		21123BD1293402AF00858119 /* FilterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BD0293402AF00858119 /* FilterField.swift */; };
+		21123BD32934084000858119 /* PhraseFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BD22934084000858119 /* PhraseFilterView.swift */; };
+		21123BD629340D7D00858119 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BD529340D7D00858119 /* FilterView.swift */; };
+		21123BDC293410B900858119 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BDB293410B900858119 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +40,12 @@
 		21123BBF2932E35E00858119 /* DetailedArtileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedArtileView.swift; sourceTree = "<group>"; };
 		21123BC12932E88A00858119 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		21123BC42932E9D200858119 /* TimeInterval + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval + Extension.swift"; sourceTree = "<group>"; };
+		21123BC92933EF0100858119 /* TagTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagTextField.swift; sourceTree = "<group>"; };
+		21123BCE2933F02E00858119 /* TagFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagFilterView.swift; sourceTree = "<group>"; };
+		21123BD0293402AF00858119 /* FilterField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterField.swift; sourceTree = "<group>"; };
+		21123BD22934084000858119 /* PhraseFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseFilterView.swift; sourceTree = "<group>"; };
+		21123BD529340D7D00858119 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		21123BDB293410B900858119 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +79,7 @@
 		21123B9C2932D3AE00858119 /* News.Front */ = {
 			isa = PBXGroup;
 			children = (
+				21123BDA2934105200858119 /* Environment */,
 				21123BC32932E9C500858119 /* Extensions */,
 				21123BBB2932E32A00858119 /* Navigation */,
 				21123BB52932DABF00858119 /* CustomViews */,
@@ -102,6 +115,7 @@
 				21123BB32932D58A00858119 /* Theme.swift */,
 				21123BB12932D49F00858119 /* User.swift */,
 				21123BC12932E88A00858119 /* Filter.swift */,
+				21123BD0293402AF00858119 /* FilterField.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,6 +123,7 @@
 		21123BB52932DABF00858119 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				21123BC92933EF0100858119 /* TagTextField.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -116,6 +131,7 @@
 		21123BBB2932E32A00858119 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				21123BCB2933EFF700858119 /* FilterView */,
 				21123BBC2932E33400858119 /* DetailedArticleView */,
 				21123BAB2932D3C500858119 /* MainView */,
 			);
@@ -136,6 +152,32 @@
 				21123BC42932E9D200858119 /* TimeInterval + Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		21123BCB2933EFF700858119 /* FilterView */ = {
+			isa = PBXGroup;
+			children = (
+				21123BD729340DDF00858119 /* FilterFields */,
+				21123BD529340D7D00858119 /* FilterView.swift */,
+			);
+			path = FilterView;
+			sourceTree = "<group>";
+		};
+		21123BD729340DDF00858119 /* FilterFields */ = {
+			isa = PBXGroup;
+			children = (
+				21123BCE2933F02E00858119 /* TagFilterView.swift */,
+				21123BD22934084000858119 /* PhraseFilterView.swift */,
+			);
+			path = FilterFields;
+			sourceTree = "<group>";
+		};
+		21123BDA2934105200858119 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				21123BDB293410B900858119 /* DataModel.swift */,
+			);
+			path = Environment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,14 +256,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21123BD629340D7D00858119 /* FilterView.swift in Sources */,
+				21123BCF2933F02E00858119 /* TagFilterView.swift in Sources */,
+				21123BD32934084000858119 /* PhraseFilterView.swift in Sources */,
 				21123BC02932E35E00858119 /* DetailedArtileView.swift in Sources */,
 				21123BB02932D46800858119 /* Article.swift in Sources */,
 				21123BC52932E9D200858119 /* TimeInterval + Extension.swift in Sources */,
 				21123BA02932D3AE00858119 /* MainView.swift in Sources */,
+				21123BDC293410B900858119 /* DataModel.swift in Sources */,
 				21123B9E2932D3AE00858119 /* News_FrontApp.swift in Sources */,
+				21123BD1293402AF00858119 /* FilterField.swift in Sources */,
 				21123BB42932D58A00858119 /* Theme.swift in Sources */,
 				21123BC22932E88A00858119 /* Filter.swift in Sources */,
 				21123BB22932D49F00858119 /* User.swift in Sources */,
+				21123BCA2933EF0100858119 /* TagTextField.swift in Sources */,
 				21123BAD2932D40E00858119 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct News_FrontApp: App {
+    @StateObject private var mainViewModel = MainViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            MainView(viewModel: MainViewModel())
+            MainView()
+                .environmentObject(mainViewModel)
         }
     }
 }

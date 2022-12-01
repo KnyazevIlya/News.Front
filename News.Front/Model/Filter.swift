@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 enum Filter {
-    case user(Int, String)
+    case author(Int, String)
     case tag(String)
     case theme(String)
     case fromDate(Date)
@@ -17,7 +17,7 @@ enum Filter {
     
     var icon: Image? {
         switch self {
-        case .user(_, _):
+        case .author(_, _):
             return Image(systemName: "person.circle.fill")
         case .tag(_):
             return Image(systemName: "tag.fill")
@@ -30,7 +30,7 @@ enum Filter {
     
     var color: Color {
         switch self {
-        case .user(_, _):
+        case .author(_, _):
             return .purple
         case .tag(_):
             return .green
@@ -45,7 +45,7 @@ enum Filter {
     
     var order: Int {
         switch self {
-        case .user(_, _):
+        case .author(_, _):
             return 0
         case .tag(_):
             return 1
