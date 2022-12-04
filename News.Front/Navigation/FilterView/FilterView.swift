@@ -10,9 +10,16 @@ import SwiftUI
 struct FilterView: View {
     
     @EnvironmentObject private var viewModel: MainViewModel
+    @State private var phrase = ""
     
     var body: some View {
-        Text("\(viewModel.filters.count)")
+        NavigationView {
+            VStack {
+                Text("Search by users")
+                    .font(.system(.title2, design: .rounded, weight: .semibold))
+                PhraseFilterView(phrases: ["Oleg Mongol", "Steve Jobs", "Chin Kong"], placeholder: "placeholder", selectedPhrase: $phrase)
+            }
+        }
     }
 }
 

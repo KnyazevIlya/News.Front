@@ -10,15 +10,14 @@ import SwiftUI
 struct PhraseFilterView: View {
     var phrases: [String]
     let placeholder: String
-    let field: FilterField
 
-    @Binding var selectedField: FilterField
     @Binding var selectedPhrase: String
-    
+    @FocusState private var isEditing: Bool
     @State private var keyword: String = ""
     
     var body: some View {
         VStack {
+            Text(String(isEditing))
             TextField("ssdsd", text: $keyword)
                 .frame(minHeight: 30)
                 .padding(.horizontal)
@@ -26,6 +25,16 @@ struct PhraseFilterView: View {
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(20)
                 .padding()
+                .focused($isEditing)
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        
+                        Button("Done") {
+                            isEditing = false
+                        }
+                    }
+                }
             
             SearchResultView()
         }
@@ -34,9 +43,9 @@ struct PhraseFilterView: View {
     @ViewBuilder
     func SearchResultView() -> some View {
         let filteredTags = phrases
-            .filter { $0.contains(keyword.lowercased()) }
+            .filter { $0.lowercased().contains(keyword.lowercased()) }
 
-        if !filteredTags.isEmpty, field == selectedField {
+        if !filteredTags.isEmpty, isEditing {
             List {
                 ForEach(filteredTags, id: \.self) { tag in
                     Button {
@@ -55,6 +64,6 @@ struct PhraseFilterView: View {
 
 struct PhraseFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        PhraseFilterView(phrases: ["Oleg Mongol", "Steve Jobs", "Chin Kong"].map { $0.lowercased() }, placeholder: "Author", field: .author, selectedField: .constant(.author), selectedPhrase: .constant(""))
+        PhraseFilterView(phrases: ["Oleg Mongol", "Steve Jobs", "Chin Kong"], placeholder: "Author", selectedPhrase: .constant(""))
     }
 }
