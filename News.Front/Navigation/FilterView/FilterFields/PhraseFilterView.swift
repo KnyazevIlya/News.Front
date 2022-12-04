@@ -11,32 +11,45 @@ struct PhraseFilterView: View {
     var phrases: [String]
     let placeholder: String
 
-    @Binding var selectedPhrase: String
+    @Binding var selectedPhrase: String?
     @FocusState private var isEditing: Bool
-    @State private var keyword: String = ""
+    @State private var keyword: String
+    
+    init(phrases: [String], placeholder: String, selectedPhrase: Binding<String?>) {
+        self.phrases = phrases
+        self.placeholder = placeholder
+        self._selectedPhrase = selectedPhrase
+        
+        keyword = selectedPhrase.wrappedValue ?? ""
+    }
     
     var body: some View {
         VStack {
-            Text(String(isEditing))
-            TextField("ssdsd", text: $keyword)
+            TextField(placeholder, text: $keyword)
                 .frame(minHeight: 30)
                 .padding(.horizontal)
                 .padding(.vertical, 6)
                 .background(Color.gray.opacity(0.2))
                 .cornerRadius(20)
-                .padding()
                 .focused($isEditing)
                 .toolbar {
-                    ToolbarItemGroup(placement: .keyboard) {
-                        Spacer()
-                        
-                        Button("Done") {
-                            isEditing = false
+                    if isEditing {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            
+                            Button("Done") {
+                                isEditing = false
+                            }
                         }
                     }
                 }
             
             SearchResultView()
+        }
+        .onChange(of: keyword) { newValue in
+            if newValue.isEmpty {
+                selectedPhrase = nil
+            }
         }
     }
     

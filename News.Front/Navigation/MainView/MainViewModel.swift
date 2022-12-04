@@ -19,6 +19,7 @@ final class MainViewModel: ObservableObject {
     // mapToLatest
     // animate list change
     @Published var filter = FilterContainer()
+    @Published var isFilterShown = false
     
     @MainActor
     func fetchArticles() async {
@@ -59,10 +60,29 @@ final class MainViewModel: ObservableObject {
             tags: ["swimming", "football"],
             fromDate: Date().addingTimeInterval(-(.dayDuration)),
             toDate: Date().addingTimeInterval(.dayDuration))
+        
+        toggleFilterIfNeeded()
     }
     
-//    func removeFilter(at index: Int) {
-//        filters.remove(at: index)
-//    }
+    func remove(filter: Filter) {
+        switch filter {
+        case .author:
+            self.filter.author = nil
+        case .tag(let tag):
+            self.filter.tags.removeAll { $0 == tag }
+        case .theme:
+            self.filter.theme = nil
+        case .fromDate:
+            self.filter.fromDate = nil
+        case .toDate:
+            self.filter.toDate = nil
+        }
+        
+        toggleFilterIfNeeded()
+    }
+    
+    func toggleFilterIfNeeded() {
+        isFilterShown = !filter.isEmpty
+    }
     
 }

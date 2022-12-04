@@ -10,9 +10,7 @@ import SwiftUI
 struct TagFilterView: View {
     var tags: [String] = []
     let placeholder: String
-    let field: FilterField
 
-    @Binding var selectedField: FilterField
     @Binding var selectedTags: [String]
     
     @State private var keyword: String = ""
@@ -39,7 +37,6 @@ struct TagFilterView: View {
             .background(Color.gray.opacity(0.2))
             .cornerRadius(20)
         }
-        .padding()
     }
     
     @ViewBuilder
@@ -48,7 +45,7 @@ struct TagFilterView: View {
             .filter { !selectedTags.contains($0) }
             .filter { $0.contains(keyword.lowercased()) }
         
-        if !filteredTags.isEmpty, field == selectedField {
+        if !filteredTags.isEmpty {
             List {
                 ForEach(filteredTags, id: \.self) { tag in
                     Button {
@@ -70,6 +67,6 @@ struct TagFilterView: View {
 struct TagFilterView_Previews: PreviewProvider {
     static let tags = ["Java", "Python", "JavaScript", "Php", "Swift", "SQL", "Ruby", "Objective-C", "Go", "Assembly", "Basic", "Html", "React", "Kotlin", "C++", "C#"].map { $0.lowercased() }
     static var previews: some View {
-        TagFilterView(tags: tags, placeholder: "Tags", field: .tag, selectedField: .constant(.tag), selectedTags: .constant([]))
+        TagFilterView(tags: tags, placeholder: "Tags", selectedTags: .constant([]))
     }
 }

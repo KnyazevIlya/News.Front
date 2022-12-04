@@ -17,7 +17,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                if true {
+                if viewModel.isFilterShown {
                     Section {
                         SelectedFiltersView()
                             .buttonStyle(PlainButtonStyle())
@@ -43,23 +43,6 @@ struct MainView: View {
                     Image(systemName: "line.3.horizontal.decrease.circle.fill")
                         .scaleEffect(1.2)
                 }
-                .overlay(
-                    VStack {
-                        if true {
-                            Circle()
-                                .fill(Color.red)
-                                .frame(width: 15, height: 15)
-                                .offset(x: 10, y: -7)
-                                .overlay(
-                                    EmptyView()
-//                                    Text("\(viewModel.filters.count)")
-//                                        .font(.system(size: 10))
-//                                        .foregroundColor(.white)
-//                                        .offset(x: 10, y: -7)
-                                )
-                        }
-                    }
-                )
                 .sheet(isPresented: $isFilterPresented) {
                     FilterView()
                 }
@@ -98,10 +81,8 @@ struct MainView: View {
                 FilterComponentView(forFilter: .theme, withText: theme)
             }
             
-            Text(String(viewModel.tags.count))
-            
-            ForEach(viewModel.tags, id:\.self) { tag in
-                FilterComponentView(forFilter: .tag, withText: tag)
+            ForEach(viewModel.filter.tags, id:\.self) { tag in
+                FilterComponentView(forFilter: .tag(tag), withText: tag)
             }
             
             if let formDate = viewModel.filter.fromDate {
@@ -111,39 +92,34 @@ struct MainView: View {
             if let toDate = viewModel.filter.toDate {
                 FilterComponentView(forFilter: .toDate, withText: "to: \(toDate.formatted(.dateTime.day().month().year()))")
             }
-            
-//            ForEach(Array(viewModel.filters.enumerated()), id:\.offset) { index, filter in
-//                Button {
-//                    viewModel.removeFilter(at: index)
-//                } label: {
-//                    HStack {
-            
-//                }
-//            }
         }
     }
     
     @ViewBuilder
     private func FilterComponentView(forFilter filter: Filter, withText text: String) -> some View {
-        HStack {
-            if let iconName = filter.icon {
-                Image(systemName: iconName)
+        Button {
+            viewModel.remove(filter: filter)
+        } label: {
+            HStack {
+                if let iconName = filter.icon {
+                    Image(systemName: iconName)
+                        .renderingMode(.template)
+                        .foregroundColor(.white)
+                }
+                
+                Text(text)
+                    .font(.system(.caption, design: .rounded, weight: .semibold))
+                    .foregroundColor(.white)
+                
+                Image(systemName: "xmark.circle.fill")
                     .renderingMode(.template)
                     .foregroundColor(.white)
             }
-            
-            Text(text)
-                .font(.system(.caption, design: .rounded, weight: .semibold))
-                .foregroundColor(.white)
-            
-            Image(systemName: "xmark.circle.fill")
-                .renderingMode(.template)
-                .foregroundColor(.white)
+            .padding(.vertical, 5)
+            .padding(.horizontal, 10)
+            .background(filter.color)
+            .cornerRadius(15)
         }
-        .padding(.vertical, 5)
-        .padding(.horizontal, 10)
-        .background(filter.color)
-        .cornerRadius(15)
     }
     
     @ViewBuilder

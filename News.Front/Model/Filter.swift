@@ -10,7 +10,7 @@ import SwiftUI
 
 enum Filter {
     case author
-    case tag
+    case tag(String)
     case theme
     case fromDate
     case toDate
@@ -19,7 +19,7 @@ enum Filter {
         switch self {
         case .author:
             return "person.circle.fill"
-        case .tag:
+        case .tag(_):
             return "tag.fill"
         case .theme:
             return "newspaper.fill"
@@ -32,7 +32,7 @@ enum Filter {
         switch self {
         case .author:
             return .purple
-        case .tag:
+        case .tag(_):
             return .green
         case .theme:
             return .orange

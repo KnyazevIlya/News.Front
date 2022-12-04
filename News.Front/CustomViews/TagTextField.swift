@@ -90,7 +90,6 @@ struct TagTextField: View {
             keyword.removeAll()
         })
         .textFieldStyle(PlainTextFieldStyle())
-        .font(theme.inputFieldFont)
         .foregroundColor(theme.inputFieldTextColor)
         .disableAutocorrection(true)
         .autocapitalization(.none)

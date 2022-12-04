@@ -13,4 +13,12 @@ struct FilterContainer {
     var tags: [String] = []
     var fromDate: Date?
     var toDate: Date?
+    
+    var isEmpty: Bool {
+        return author == nil   &&
+               theme == nil    &&
+               tags.isEmpty    &&
+               fromDate == nil &&
+               toDate == nil
+    }
 }
