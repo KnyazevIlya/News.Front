@@ -17,7 +17,7 @@ struct MainView: View {
     var body: some View {
         NavigationView {
             List {
-                if !viewModel.filters.isEmpty {
+                if true {
                     Section {
                         SelectedFiltersView()
                             .buttonStyle(PlainButtonStyle())
@@ -45,16 +45,17 @@ struct MainView: View {
                 }
                 .overlay(
                     VStack {
-                        if !viewModel.filters.isEmpty {
+                        if true {
                             Circle()
                                 .fill(Color.red)
                                 .frame(width: 15, height: 15)
                                 .offset(x: 10, y: -7)
                                 .overlay(
-                                    Text("\(viewModel.filters.count)")
-                                        .font(.system(size: 10))
-                                        .foregroundColor(.white)
-                                        .offset(x: 10, y: -7)
+                                    EmptyView()
+//                                    Text("\(viewModel.filters.count)")
+//                                        .font(.system(size: 10))
+//                                        .foregroundColor(.white)
+//                                        .offset(x: 10, y: -7)
                                 )
                         }
                     }
@@ -89,47 +90,60 @@ struct MainView: View {
     @ViewBuilder
     private func SelectedFiltersView() -> some View {
         VFlow(alignment: .leading) {
-            ForEach(Array(viewModel.filters.enumerated()), id:\.offset) { index, filter in
-                Button {
-                    viewModel.removeFilter(at: index)
-                } label: {
-                    HStack {
-                        if let icon = filter.icon {
-                            icon
-                                .renderingMode(.template)
-                                .foregroundColor(.white)
-                        }
-                        
-                        TextForFilter(filter)
-                            .font(.system(.caption, design: .rounded, weight: .semibold))
-                            .foregroundColor(.white)
-
-                        Image(systemName: "xmark.circle.fill")
-                            .renderingMode(.template)
-                            .foregroundColor(.white)
-                    }
-                    .padding(.vertical, 5)
-                    .padding(.horizontal, 10)
-                    .background(filter.color)
-                    .cornerRadius(15)
-                }
+            if let author = viewModel.filter.author {
+                FilterComponentView(forFilter: .author, withText: author.1)
             }
+            
+            if let theme = viewModel.filter.theme {
+                FilterComponentView(forFilter: .theme, withText: theme)
+            }
+            
+            Text(String(viewModel.tags.count))
+            
+            ForEach(viewModel.tags, id:\.self) { tag in
+                FilterComponentView(forFilter: .tag, withText: tag)
+            }
+            
+            if let formDate = viewModel.filter.fromDate {
+                FilterComponentView(forFilter: .fromDate, withText: "from: \(formDate.formatted(.dateTime.day().month().year()))")
+            }
+            
+            if let toDate = viewModel.filter.toDate {
+                FilterComponentView(forFilter: .toDate, withText: "to: \(toDate.formatted(.dateTime.day().month().year()))")
+            }
+            
+//            ForEach(Array(viewModel.filters.enumerated()), id:\.offset) { index, filter in
+//                Button {
+//                    viewModel.removeFilter(at: index)
+//                } label: {
+//                    HStack {
+            
+//                }
+//            }
         }
     }
     
-    private func TextForFilter(_ filter: Filter) -> Text {
-        switch filter {
-        case .author(_, let name):
-            return Text(name)
-        case .tag(let tag):
-            return Text(tag)
-        case .theme(let theme):
-            return Text(theme)
-        case .fromDate(let date):
-            return Text("from: \(date.formatted(.dateTime.day().month().year()))")
-        case .toDate(let date):
-            return Text("to: \(date.formatted(.dateTime.day().month().year()))")
+    @ViewBuilder
+    private func FilterComponentView(forFilter filter: Filter, withText text: String) -> some View {
+        HStack {
+            if let iconName = filter.icon {
+                Image(systemName: iconName)
+                    .renderingMode(.template)
+                    .foregroundColor(.white)
+            }
+            
+            Text(text)
+                .font(.system(.caption, design: .rounded, weight: .semibold))
+                .foregroundColor(.white)
+            
+            Image(systemName: "xmark.circle.fill")
+                .renderingMode(.template)
+                .foregroundColor(.white)
         }
+        .padding(.vertical, 5)
+        .padding(.horizontal, 10)
+        .background(filter.color)
+        .cornerRadius(15)
     }
     
     @ViewBuilder

@@ -18,7 +18,7 @@ final class MainViewModel: ObservableObject {
     // await URLSession
     // mapToLatest
     // animate list change
-    @Published var filters: [Filter] = []
+    @Published var filter = FilterContainer()
     
     @MainActor
     func fetchArticles() async {
@@ -53,19 +53,16 @@ final class MainViewModel: ObservableObject {
                     dateCreated: Date())
         ]
         
-        filters = [
-            .tag("football"),
-            .theme("Sport"),
-            .tag("swimming"),
-            .author(10, "Oleg Mongol"),
-            .toDate(Date().addingTimeInterval(.dayDuration)),
-            .fromDate(Date().addingTimeInterval(-(.dayDuration))),
-        ]
-        filters.sort { $0.order < $1.order }
+        filter = FilterContainer(
+            author: (10, "Oleg Mongol"),
+            theme: "Sport",
+            tags: ["swimming", "football"],
+            fromDate: Date().addingTimeInterval(-(.dayDuration)),
+            toDate: Date().addingTimeInterval(.dayDuration))
     }
     
-    func removeFilter(at index: Int) {
-        filters.remove(at: index)
-    }
+//    func removeFilter(at index: Int) {
+//        filters.remove(at: index)
+//    }
     
 }

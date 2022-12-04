@@ -25,6 +25,7 @@
 		21123BD32934084000858119 /* PhraseFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BD22934084000858119 /* PhraseFilterView.swift */; };
 		21123BD629340D7D00858119 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BD529340D7D00858119 /* FilterView.swift */; };
 		21123BDC293410B900858119 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21123BDB293410B900858119 /* DataModel.swift */; };
+		2124E879293CF5A900F5AD21 /* FilterContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2124E878293CF5A900F5AD21 /* FilterContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		21123BD22934084000858119 /* PhraseFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhraseFilterView.swift; sourceTree = "<group>"; };
 		21123BD529340D7D00858119 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		21123BDB293410B900858119 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		2124E878293CF5A900F5AD21 /* FilterContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 				21123BB12932D49F00858119 /* User.swift */,
 				21123BC12932E88A00858119 /* Filter.swift */,
 				21123BD0293402AF00858119 /* FilterField.swift */,
+				2124E878293CF5A900F5AD21 /* FilterContainer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				21123BA02932D3AE00858119 /* MainView.swift in Sources */,
 				21123BDC293410B900858119 /* DataModel.swift in Sources */,
 				21123B9E2932D3AE00858119 /* News_FrontApp.swift in Sources */,
+				2124E879293CF5A900F5AD21 /* FilterContainer.swift in Sources */,
 				21123BD1293402AF00858119 /* FilterField.swift in Sources */,
 				21123BB42932D58A00858119 /* Theme.swift in Sources */,
 				21123BC22932E88A00858119 /* Filter.swift in Sources */,

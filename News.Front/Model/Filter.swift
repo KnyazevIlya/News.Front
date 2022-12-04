@@ -9,20 +9,20 @@ import Foundation
 import SwiftUI
 
 enum Filter {
-    case author(Int, String)
-    case tag(String)
-    case theme(String)
-    case fromDate(Date)
-    case toDate(Date)
+    case author
+    case tag
+    case theme
+    case fromDate
+    case toDate
     
-    var icon: Image? {
+    var icon: String? {
         switch self {
-        case .author(_, _):
-            return Image(systemName: "person.circle.fill")
-        case .tag(_):
-            return Image(systemName: "tag.fill")
-        case .theme(_):
-            return Image(systemName: "newspaper.fill")
+        case .author:
+            return "person.circle.fill"
+        case .tag:
+            return "tag.fill"
+        case .theme:
+            return "newspaper.fill"
         default:
             return nil
         }
@@ -30,31 +30,16 @@ enum Filter {
     
     var color: Color {
         switch self {
-        case .author(_, _):
+        case .author:
             return .purple
-        case .tag(_):
+        case .tag:
             return .green
-        case .theme(_):
+        case .theme:
             return .orange
-        case .fromDate(_):
+        case .fromDate:
             return .pink
-        case .toDate(_):
+        case .toDate:
             return .pink
-        }
-    }
-    
-    var order: Int {
-        switch self {
-        case .author(_, _):
-            return 0
-        case .tag(_):
-            return 1
-        case .theme(_):
-            return 2
-        case .fromDate(_):
-            return 3
-        case .toDate(_):
-            return 4
         }
     }
 }
