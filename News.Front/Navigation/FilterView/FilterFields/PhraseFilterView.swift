@@ -43,6 +43,20 @@ struct PhraseFilterView: View {
                         }
                     }
                 }
+                .overlay(
+                    HStack {
+                        Spacer()
+                        
+                        if !keyword.isEmpty {
+                            Button {
+                                keyword = ""
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                            }
+                            .padding(.trailing)
+                        }
+                    }
+                )
             
             SearchResultView()
         }
